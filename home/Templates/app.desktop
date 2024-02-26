@@ -1,0 +1,12 @@
+[Desktop Entry]
+Name=
+Exec=
+Terminal={false/true}
+Type=
+Icon=
+StartupWMClass=
+Comment=
+MimeType=x-scheme-handler/obsidian;
+Categories=Office;
+X-Flatpak-Tags=proprietary;
+X-Flatpak=md.obsidian.Obsidian

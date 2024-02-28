@@ -6,6 +6,12 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+#fzf in NixOs
+if [ -n "${commands[fzf-share]}" ]; then
+  source "$(fzf-share)/key-bindings.zsh"
+  source "$(fzf-share)/completion.zsh"
+fi
+
 #source ~/.local/share/icons-in-terminal/icons_bash.sh
 export GUI_EDITOR=code
 export TERMINAL_EDITOR=nano
@@ -38,7 +44,7 @@ bindkey '^H' backward-kill-word
 
 
 # Set up the prompt
-#neofetch
+# neofetch
 autoload -Uz promptinit
 promptinit
 prompt adam1

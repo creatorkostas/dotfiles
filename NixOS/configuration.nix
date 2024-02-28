@@ -24,8 +24,21 @@
 	  };
 	};
 
-  services.power-profiles-daemon.enable = true;
-  #powerManagement.enable = true;
+
+  #services.power-profiles-daemon.enable = true;
+  powerManagement.enable = true;
+  #powerManagement.powertop.enable = true;
+  services.auto-cpufreq.enable = true;
+  services.auto-cpufreq.settings = {
+    battery = {
+       governor = "powersave";
+       turbo = "never";
+    };
+    charger = {
+       governor = "performance";
+       turbo = "auto";
+    };
+  };
   #services.thermald.enable = true;
   /*
   services.tlp = {
@@ -230,9 +243,28 @@
   gitlab-runner
   appimage-run
   libthai
+  libva-utils
+  powertop
+  fzf
   ];
+
+  #Enable video playback acceleration
+  nixpkgs.config.packageOverrides = pkgs: {
+    intel-vaapi-driver = pkgs.intel-vaapi-driver.override { enableHybridCodec = true; };
+  };
+  hardware.opengl = {
+    enable = true;
+    extraPackages = with pkgs; [
+      intel-media-driver # LIBVA_DRIVER_NAME=iHD
+      intel-vaapi-driver # LIBVA_DRIVER_NAME=i965 (older but works better for Firefox/Chromium)
+      vaapiVdpau
+      libvdpau-va-gl
+    ];
+  };
+  environment.sessionVariables = { LIBVA_DRIVER_NAME = "iHD"; }; # Force intel-media-driver
   
   #enableDefaultFonts = true;
+  virtualisation.waydroid.enable = true;
   virtualisation.docker.enable = true;
   nix.settings.experimental-features = [ "nix-command" "flakes" ];
   programs.zsh.enable = true;

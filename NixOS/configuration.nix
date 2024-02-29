@@ -161,8 +161,9 @@
       thunderbird
       android-studio
       tree
-      vimPlugins.packer-nvim
       luajit
+      lua
+      unzip
     ];
   };
 
@@ -176,7 +177,6 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
   wget
-  neovim
   nano
   htop
   btop
@@ -247,6 +247,37 @@
   powertop
   fzf
   ];
+
+  #programs.neovim = {
+  #  plugins = with pkgs; [
+  #    {
+  #      plugin = vimPlugins.packer-nvim;
+  #      config = ''
+  #        packadd! packer
+  #         '';
+  #    }
+  #  ];
+  #}
+
+  #programs.neovim.configure = {
+  #  enable = true;
+  #  configure = {
+  #   customRC = ''
+  ##    packadd! packer
+  #   '';
+  #   packages.myVimPackage = with pkgs.vimPlugins; {
+  #    # loaded on launch
+  #    start = [ packer-nvim ];
+  #    # manually loadable by calling `:packadd $plugin-name`
+  #    opt = [ ];
+  #  };
+  #};  
+  #};
+  #programs.neovim.enable = true;
+  #programs.neovim.plugins = [
+  #pkgs.vimPlugins.packer-nvim
+  #];
+
 
   #Enable video playback acceleration
   nixpkgs.config.packageOverrides = pkgs: {

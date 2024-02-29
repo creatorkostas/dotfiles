@@ -170,7 +170,6 @@ requires = {
     use "folke/neodev.nvim"
 
     use "KDesp73/project-starter.nvim"
-    use "KDesp73/todo-manager.nvim"
     -- use "/home/konstantinos/personal/repos/lua/plugins/project-starter.nvim"
     -- use "/home/konstantinos/personal/repos/lua/plugins/todo-manager.nvim"
 
@@ -189,4 +188,11 @@ requires = {
     --         'nvim-lua/plenary.nvim',
     --     },
     -- }
+
+    use {
+		"theRealCarneiro/hyprland-vim-syntax",
+		dependencies = { "nvim-treesitter/nvim-treesitter" },
+		ft = "hypr",
+	}
+
 end)

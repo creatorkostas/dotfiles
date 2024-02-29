@@ -14,17 +14,21 @@ fi
 
 #source ~/.local/share/icons-in-terminal/icons_bash.sh
 export GUI_EDITOR=code
-export TERMINAL_EDITOR=nano
+export TERMINAL_EDITOR=nvim
 
+alias deleteGeneration='sudo nix-env --profile /nix/var/nix/profiles/system --delete-generations'
+alias deleteGenerationsOlderThan='sudo nix profile wipe-history --profile /nix/var/nix/profiles/system --older-than'
+alias listGenerations='nix profile history --profile /nix/var/nix/profiles/system'
+alias listGenerationsShort='sudo nix-env --list-generations --profile /nix/var/nix/profiles/system'
 alias ytdlp='yt-dlp --playlist-random --write-thumbnail --write-subs --extract-audio --audio-format mp3 --embed-metadata --download-archive ~/Downloads/mps/archive -o "%(title)s.%(ext)s" --no-keep-fragments --retries 1 --no-keep-video'
 alias rebuild='sudo nixos-rebuild switch'
 alias ls='ls'
 alias ll='ls -l'
 alias la='ls -a'
 alias lla='ls -la'
-alias vim='vim'
-alias vi='vim'
-alias edit-zsh='vim ~/.zshrc'
+alias vim='nvim'
+alias vi='nvim'
+alias edit-zsh='nvim ~/.zshrc'
 alias grep='grep --color'
 alias pgadmin4='sudo python3 -s /usr/pgadmin4/web/pgAdmin4.py'
 alias upgrade='sudo nixos-rebuild switch --upgrade'
@@ -32,7 +36,8 @@ alias optimaze='nix-collect-garbage; nix-store --gc; nix-store --optimize;'
 alias powersave='sudo powerprofilesctl set power-saver';
 alias performance='sudo powerprofilesctl set performance';
 alias balanced='sudo powerprofilesctl set balanced';
-alias make_changes='sudo nano /etc/nixos/configuration.nix'
+alias make_config='sudo nvim /etc/nixos/configuration.nix'
+alias make_home='sudo nvim /etc/nixos/home.nix'
 # alias stop-all='sudo ~/Desktop/Apps/stop_all.sh'
 #alias powersave='sudo tlp bat';
 #alias performance='sudo tlp ac'
